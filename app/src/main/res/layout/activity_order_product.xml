@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="408dp"
-        android:layout_height="704dp"
+        android:layout_width="405dp"
+        android:layout_height="671dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +30,7 @@
         <ImageView
             android:id="@+id/image_ProductImage_Order"
             android:layout_width="match_parent"
-            android:layout_height="279dp"
+            android:layout_height="234dp"
             tools:srcCompat="@tools:sample/avatars" />
 
         <LinearLayout
@@ -45,8 +46,8 @@
 
                 <TextView
                     android:id="@+id/text_ProductName_Order"
-                    android:layout_width="278dp"
-                    android:layout_height="53dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Product Name"
                     android:textAlignment="center"
@@ -54,14 +55,29 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/text_ProductPrice_Order"
-                    android:layout_width="278dp"
-                    android:layout_height="53dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Price"
-                    android:textAlignment="viewStart"
-                    android:textColor="#2196F3" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_ProductPrice_Order"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Price"
+                        android:textAlignment="viewStart"
+                        android:textColor="#2196F3" />
+
+                    <TextView
+                        android:id="@+id/text_ProductDiscount_Order"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -71,7 +87,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/button_DecreaseItem_Order"
+                    android:id="@+id/button_DecreaseProduct_Order"
                     android:layout_width="45dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -79,7 +95,7 @@
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/text_ItemCount_Order"
+                    android:id="@+id/text_ProductCount_Order"
                     android:layout_width="20dp"
                     android:layout_height="41dp"
                     android:layout_weight="1"
@@ -88,7 +104,7 @@
                     android:textSize="20sp" />
 
                 <Button
-                    android:id="@+id/button_IncreaseItem_Order"
+                    android:id="@+id/button_IncreaseProduct_Order"
                     android:layout_width="45dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -100,48 +116,47 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/text_CustomerDescription_Order"
-            android:layout_width="match_parent"
+            android:id="@+id/text_ProductDescription_Order"
+            android:layout_width="287dp"
             android:layout_height="50dp"
             android:text="Description Content" />
 
         <RadioGroup
             android:id="@+id/radioGroup_ProductSize_Order"
             android:layout_width="match_parent"
-            android:layout_height="60dp">
+            android:layout_height="60dp"
+            android:orientation="horizontal">
 
-            <LinearLayout
+            <RadioButton
+                android:id="@+id/radioButton_ProductSizeS_Order"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="S"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-                <RadioButton
-                    android:id="@+id/radioButton_ProductSize_S_Order"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="S"
-                    android:textAlignment="center"
-                    android:textSize="20sp" />
+            <RadioButton
+                android:id="@+id/radioButton_ProductSizeM_Order"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="M"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-                <RadioButton
-                    android:id="@+id/radioButton_ProductSize_M_Order"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="M"
-                    android:textAlignment="center"
-                    android:textSize="20sp" />
+            <RadioButton
+                android:id="@+id/radioButton_ProductSizeL_Order"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="L"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-                <RadioButton
-                    android:id="@+id/radioButton_ProductSize_L_Order"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="L"
-                    android:textAlignment="center"
-                    android:textSize="20sp" />
-            </LinearLayout>
         </RadioGroup>
 
         <TextView
@@ -153,12 +168,17 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/text_CusmoterDescription_Order"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:maxLines="10"
+            android:gravity="top|start"
+            android:padding="10dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Customer Description" />
+            tools:text="Enter your description(If available)"
+            android:background="@drawable/textview_border" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -166,18 +186,18 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/button_Cancel_Order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:text="Cancel" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/button_Add_Order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:text="Add" />
         </LinearLayout>
 
     </LinearLayout>
