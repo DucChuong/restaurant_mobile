@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:icon="@drawable/baseline_restaurant_24"
+        android:id="@+id/action_menu_icon"
+        android:title="Menu"/>
+    <item android:icon="@drawable/process_icon"
+        android:id="@+id/action_process_icon"
+        android:title="Process" />
+    <item android:icon="@drawable/baseline_payment_24"
+        android:id="@+id/action_payment_icon"
+        android:title="Invoice" />
+    <item android:icon="@drawable/baseline_star_outline_24"
+        android:id="@+id/action_rating_icon"
+        android:title="Rating" />
+
+</menu>
