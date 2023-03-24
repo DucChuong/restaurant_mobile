@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".MenuActivity">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        tools:ignore="MissingConstraints">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager_menu_slide"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+            </androidx.viewpager.widget.ViewPager>
+
+            <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/circle_center_menu_slide"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_horizontal"
+                app:ci_drawable="@drawable/bg_menu_slide" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            >
+            <Button
+                android:id="@+id/btn_pizza"
+                android:layout_width="0dp"
+                android:layout_weight=".20"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="1dp"
+                android:text="Pizza"
+                android:textSize="12sp"
+                />
+            <Button
+                android:id="@+id/btn_spaghetti"
+                android:layout_width="0dp"
+                android:layout_weight=".20"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="1dp"
+                android:text="Pasta"
+                android:textSize="12sp"
+                />
+
+            <Button
+                android:id="@+id/btn_salad"
+                android:layout_width="0dp"
+                android:layout_weight=".20"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="1dp"
+                android:text="Salad"
+                android:textSize="12sp"
+                />
+            <Button
+                android:id="@+id/btn_bbq"
+                android:layout_width="0dp"
+                android:layout_weight=".20"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="1dp"
+                android:text="BBQ"
+                android:textSize="12sp"
+                />
+            <Button
+                android:id="@+id/btn_drink"
+                android:layout_width="0dp"
+                android:layout_weight=".20"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="1dp"
+                android:text="Drink"
+                android:textSize="12sp"
+                />
+
+        </LinearLayout>
+        <ListView
+            android:id="@+id/listProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bottom_navigation" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

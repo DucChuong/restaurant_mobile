@@ -1,16 +1,15 @@
-package dtu.edu.vn.myapplication;
+package dtu.edu.vn.myapplication.api;
 
-import dtu.edu.vn.myapplication.api.ApiService;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-
     private static RetrofitClient instance = null;
     private ApiService myApi;
 
     private RetrofitClient() {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(ApiService.BASE_URL)
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiService.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         myApi = retrofit.create(ApiService.class);

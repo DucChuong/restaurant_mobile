@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dtu.edu.vn.myapplication.api.ApiService;
+import dtu.edu.vn.myapplication.api.RetrofitClient;
 import dtu.edu.vn.myapplication.database.Product;
 import dtu.edu.vn.myapplication.database.ProductOrder;
 import dtu.edu.vn.myapplication.database.ProductSize;
@@ -41,6 +43,7 @@ public class OrderProductActivity extends AppCompatActivity {
     TextView textProductPrice;
     ProductOrder productOrder;
     ArrayList<ProductSize> productSizeList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -78,7 +81,7 @@ public class OrderProductActivity extends AppCompatActivity {
         btnIncrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(productCount < 10){
+                if (productCount < 10) {
                     productCount++;
                     textProductCount.setText(String.valueOf(productCount));
                     changePrice();
@@ -89,7 +92,7 @@ public class OrderProductActivity extends AppCompatActivity {
         btnDecrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(productCount > 1){
+                if (productCount > 1) {
                     productCount--;
                     textProductCount.setText(String.valueOf(productCount));
                     changePrice();
@@ -128,12 +131,11 @@ public class OrderProductActivity extends AppCompatActivity {
         EditText textCustomerDescription = findViewById(R.id.text_CusmoterDescription_Order);
 
 
-
         Button btnCancel = findViewById(R.id.button_Cancel_Order);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OrderProductActivity.this, MainActivity.class);
+                Intent intent = new Intent(OrderProductActivity.this, MenuActivity.class);
                 startActivity(intent);
             }
         });
@@ -145,15 +147,16 @@ public class OrderProductActivity extends AppCompatActivity {
             public void onClick(View view) {
                 customerDescription = textCustomerDescription.getText().toString();
                 productOrder = new ProductOrder(product.getId(), product.getName(), productCount, productSizeOrder, customerDescription, product.getDiscount(), productPrice);
-                Intent intent = new Intent(OrderProductActivity.this, MainActivity.class);
+                Intent intent = new Intent(OrderProductActivity.this, MenuActivity.class);
                 intent.putExtra("productOrder", productOrder);
                 startActivity(intent);
             }
         });
     }
+
     private void clickCallApi() {
         Call<ArrayList<ProductSize>> call = RetrofitClient.getInstance().getMyApi().convertProductSizeJson(product.getId());
-        call .enqueue(new Callback<ArrayList<ProductSize>>() {
+        call.enqueue(new Callback<ArrayList<ProductSize>>() {
             @Override
             public void onResponse(Call<ArrayList<ProductSize>> call, Response<ArrayList<ProductSize>> response) {
                 productSizeList = response.body();
@@ -168,20 +171,21 @@ public class OrderProductActivity extends AppCompatActivity {
         });
     }
 
-    private String productDiscount(int discount){
+    private String productDiscount(int discount) {
         String textDiscount = "";
-        if(discount == 0){
+        if (discount == 0) {
             return textDiscount;
-        }
-        else {
+        } else {
             textDiscount = "-" + discount + "%";
         }
         return textDiscount;
     }
-    private float getProductPrice(int productSizeOrder){
-        return productSizeList.get(productSizeOrder-1).getPrice();
+
+    private float getProductPrice(int productSizeOrder) {
+        return productSizeList.get(productSizeOrder - 1).getPrice();
     }
-    private void changePrice(){
-        productPrice = Float.parseFloat(df.format(productCount*getProductPrice(productSizeOrder)));
+
+    private void changePrice() {
+        productPrice = Float.parseFloat(df.format(productCount * getProductPrice(productSizeOrder)));
     }
 }
