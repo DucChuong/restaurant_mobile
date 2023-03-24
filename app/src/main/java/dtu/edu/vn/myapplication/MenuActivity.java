@@ -3,10 +3,12 @@ package dtu.edu.vn.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -34,11 +36,11 @@ public class MenuActivity extends AppCompatActivity {
     Button btn_Drink;
     private List<SlideMenu> mListPhoto;
     private ArrayList<Product> arrProduct;
-    private ArrayList<Product> arrProductPizza;
-    private ArrayList<Product> arrProductSalad;
-    private ArrayList<Product> arrProductBbq;
-    private ArrayList<Product> arrProductPasta;
-    private ArrayList<Product> arrProductDrink;
+    private ArrayList<Product> arrProductPizza = new ArrayList<Product>();
+    private ArrayList<Product> arrProductSalad = new ArrayList<Product>();
+    private ArrayList<Product> arrProductBbq = new ArrayList<Product>();
+    private ArrayList<Product> arrProductPasta = new ArrayList<Product>();
+    private ArrayList<Product> arrProductDrink= new ArrayList<Product>();
     MenuListAdapter menuAdapter;
     ListView listViewMenu;
     private Handler mHandler = new Handler();
@@ -59,6 +61,8 @@ public class MenuActivity extends AppCompatActivity {
         handleSileMenu();
         callApi();
         handleViewProduct();
+
+
 
 
     }
@@ -120,10 +124,12 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ArrayList<Product> > call, Response<ArrayList<Product> > response) {
                 Toast.makeText(MenuActivity.this,"Success",Toast.LENGTH_LONG).show();
-                Log.i("success","s");
+
                 arrProduct = response.body();
+
+
                 for (int i = 0; i < arrProduct.size(); i++) {
-                    switch (arrProduct.get(i).getCategories()){
+                    switch (arrProduct.get(i).getCategory()){
                         case "pizza":
                             arrProductPizza.add(arrProduct.get(i));
                             break;
@@ -147,7 +153,15 @@ public class MenuActivity extends AppCompatActivity {
                 menuAdapter = new MenuListAdapter(MenuActivity.this,R.layout.cell_layout_product,arrProductPizza);
                 listViewMenu.setAdapter(menuAdapter);
 
-
+                listViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Product productOrder = arrProductPizza.get(i);
+                        Intent intent = new Intent(MenuActivity.this, OrderProductActivity.class);
+                        intent.putExtra("product", productOrder);
+                        startActivity(intent);
+                    }
+                });
 
             }
             @Override

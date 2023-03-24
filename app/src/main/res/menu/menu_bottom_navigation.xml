@@ -3,6 +3,9 @@
     <item android:icon="@drawable/baseline_restaurant_24"
         android:id="@+id/action_menu_icon"
         android:title="Menu"/>
+    <item android:icon="@drawable/baseline_report_gmailerrorred_24"
+        android:id="@+id/action_report_icon"
+        android:title="Report"/>
     <item android:icon="@drawable/process_icon"
         android:id="@+id/action_process_icon"
         android:title="Process" />

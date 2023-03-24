@@ -47,13 +47,6 @@ public class MenuListAdapter extends ArrayAdapter<Product> {
         ImageView imgProduct = cellView.findViewById(R.id.img_product);
         Picasso.get().load(p.getImgSrc()).resize(250, 250)
                 .centerCrop().into(imgProduct);
-        cellView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, OrderProductActivity.class);
-                context.startActivity(intent);
-            }
-        });
         return cellView;
     }
 }
