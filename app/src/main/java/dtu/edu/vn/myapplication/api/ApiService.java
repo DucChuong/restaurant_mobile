@@ -24,11 +24,4 @@ public interface  ApiService {
     @GET("products")
     Call <ArrayList<Product>> convertProductJson();
 
-//    @Query("id") int id,
-//    @Query("name") String name,
-//    @Query("description") String description,
-//    @Query("status") boolean status,
-//    @Query("imgSrc") String imgSrc,
-//    @Query("discount") int discount,
-//    @Query("category") String category
 }
