@@ -1,5 +1,6 @@
 package dtu.edu.vn.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -7,11 +8,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +47,7 @@ public class MenuActivity extends AppCompatActivity {
     private ArrayList<Product> arrProductPasta = new ArrayList<Product>();
     private ArrayList<Product> arrProductDrink= new ArrayList<Product>();
     MenuListAdapter menuAdapter;
+    BottomNavigationView bottomNavigationView;
     ListView listViewMenu;
     private Handler mHandler = new Handler();
     private Runnable mRunnable = new Runnable() {
@@ -61,10 +67,30 @@ public class MenuActivity extends AppCompatActivity {
         handleSileMenu();
         callApi();
         handleViewProduct();
+        handleBottomNavigation();
 
 
 
+    }
 
+    private void handleBottomNavigation() {
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+//                switch (item.getItemId()){
+//                    case R.id.action_menu_icon: break;
+//                    case R.id.action_process_icon:
+//                        Intent intentinstruments = new Intent(MenuActivity.this, InstrumentListActivity.class);
+//                        startActivity(intentinstruments);
+//                        break;
+//                    case R.id.ic_methods:
+//                        Intent intentmethods = new Intent(MenuActivity.this, MethodsActivity.class);
+//                        startActivity(intentmethods);
+//                        break;
+//                }
+            }
+        });
     }
 
     private void handleViewProduct() {
@@ -111,9 +137,21 @@ public class MenuActivity extends AppCompatActivity {
 
 
     }
+    // Func to view product based on categories
     private void handleCategoryProduct(ArrayList<Product> Arrcategory) {
+
         menuAdapter = new MenuListAdapter(MenuActivity.this,R.layout.cell_layout_product,Arrcategory);
         listViewMenu.setAdapter(menuAdapter);
+        listViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Product productOrder = Arrcategory.get(i);
+                Intent intent = new Intent(MenuActivity.this, OrderProductActivity.class);
+                intent.putExtra("product", productOrder);
+                startActivity(intent);
+            }
+        });
     }
 
     private void callApi() {
@@ -153,15 +191,7 @@ public class MenuActivity extends AppCompatActivity {
                 menuAdapter = new MenuListAdapter(MenuActivity.this,R.layout.cell_layout_product,arrProductPizza);
                 listViewMenu.setAdapter(menuAdapter);
 
-                listViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Product productOrder = arrProductPizza.get(i);
-                        Intent intent = new Intent(MenuActivity.this, OrderProductActivity.class);
-                        intent.putExtra("product", productOrder);
-                        startActivity(intent);
-                    }
-                });
+
 
             }
             @Override
@@ -172,6 +202,7 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
+    // Func handle Sile Menu
     private void handleSileMenu() {
         mViewPager =findViewById(R.id.view_pager_menu_slide);
         mCircleIndicator = findViewById(R.id.circle_center_menu_slide);

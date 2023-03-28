@@ -18,7 +18,7 @@ import retrofit2.http.Query;
 
 public interface  ApiService {
 
-    String BASE_URL = "http://192.168.1.91:5500/";
+    String BASE_URL = "http://192.168.1.150:5500/";
     @GET("productSize/{product_id}")
     Call<ArrayList<ProductSize>> convertProductSizeJson(@Path("product_id") int product_id);
     @GET("products")

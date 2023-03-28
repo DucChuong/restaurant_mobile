@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "961242554506",
+    "project_id": "restauranttemp-ae36c",
+    "storage_bucket": "restauranttemp-ae36c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961242554506:android:b9809f97d3dfba80c68d73",
+        "android_client_info": {
+          "package_name": "dtu.edu.vn.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961242554506-5fudkcjd1on27oao7ba95ug39vtravjt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARmxyhjM-hqFMY66AjU4W3IlF-qha26G4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961242554506-5fudkcjd1on27oao7ba95ug39vtravjt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

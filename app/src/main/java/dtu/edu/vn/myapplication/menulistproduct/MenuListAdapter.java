@@ -49,4 +49,6 @@ public class MenuListAdapter extends ArrayAdapter<Product> {
                 .centerCrop().into(imgProduct);
         return cellView;
     }
+
+
 }
